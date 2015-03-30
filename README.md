@@ -20,6 +20,7 @@ Modify repo/Puppetfile to specify which puppet modules you wish to have installe
 Modify manifests/default.pp to specify your specific puppet config.
 
 
+NOTE - If you are on windows and using PuTTY, you'll need to follow the steps here - https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Connect-to-Your-Vagrant-Virtual-Machine-with-PuTTY
 
 TODO
 Put puppet modules in a proper location like /vagrant/modules
