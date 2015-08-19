@@ -8,6 +8,13 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, host: 4567, guest:80
 
 #  config.vm.synced_folder ".", "/home/vagrant/my-project", :nfs => true
+  config.vm.provider :virtualbox do |vb|
+    vb.customize [
+      'modifyvm', :id,
+      '--name', 'nexus',
+      '--memory', '512'
+    ]
+  end
   
   config.vm.provision "shell", inline: "apt-get update"
   config.vm.provision "shell", inline: "apt-get -y install ruby-dev git-core"
@@ -15,7 +22,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "cp /vagrant/repo/Puppetfile /tmp"
   config.vm.provision "shell", inline: "cd /tmp && librarian-puppet install --verbose"
 
-  
   # Figure out the 'right' place to put my modules so I can continually use puppet
   config.vm.provision "puppet" do |puppet|
     puppet.temp_dir = "/tmp"
